@@ -1,0 +1,72 @@
+WAVE 3
+
+Default values are within square brackets []. They are assumed if the respective keyword is omitted
+from the parameter file.
+
+VERBOSE	                 Produce very verbose output (to stderr) during the initialization of variables.
+
+LOGERRORS		 Log all information on a separate file with extension ".err", even non successful simulations.
+                         If not given, this information (that may take several Mb) will not be logged.
+
+POPSIZE  [1000]          POPULATION size. If no growth rate is specified this is the constant size of the deme.
+
+SIMULATIONS <num> [1]    Define number of simulations to simulate
+
+SELECTMODEL <num> [0]	 0 - Dominant; 1 - Additive
+
+SELECTMIN <num> [0]      Define the interval for the flat prior for selection coefficients. 
+SELECTMAX <num> [1]	 For each simulation, fitnesses for AA, AS and SS will be computed using a random
+			 number (SC) between these two bounds and using an additive or dominant model:
+			 
+                         Additive
+                          aafitness = 1.0 - SC
+                          asfitness = 1.0 - SC/2
+                          ssfitness = 1.0
+			  
+                         Dominant
+                          aafitness = 1.0 - SC
+                          asfitness = 1.0
+                          ssfitness = 1.0
+
+			 
+PMIN <num> [0]           Define the interval of acceptance of % of haplotypes (p) similar to the original.
+PMAX <num> [0]           The simulation stops whenever p falls inside this interval. Can be used with SMIN 
+                         and SMAX. Usefull to compute the age of the mutation.
+
+SMIN <num> [0]		 Define the threshold of acceptance of % of mutant haplotypes (s). The simulation 
+                         stops whenever s frequency is bigger than this limit. 
+
+NS  <num> [0]		 If bigger than 0, in each simulation SMIN is sampled from a binolmial with p=SMIN
+                         and n=2NS. If 2NS=0, then SMIN is assumed fixed.
+			
+SINIT <num> [1]          Number of cromossomes carrying the mutant allele at the original population.
+			 Default is 1 (with frequency 1/POPSIZE) but can be anything from 1 to POPSIZE
+			
+MAXGENERATIONS <num> [1000] When using PMIN and PMAX defines the maximum number of generations before stopping.
+                            This prevents the program to run indefinetely if p falls outside [PMIN-PMAX]
+			    
+LEFTLOCI  <num> [1]      Number of marker loci to the left of the mutation (max = 8)
+RIGHTLOCI <num> [1]      Number of marker loci to the right of the mutation (max = 8)
+
+HAPLOUTPUT <num> [0]     0 - do not output haplotypes; 1 - output haplotypes
+
+MAXPOPSIZE <num> [1000]  POPULATION maximum size. When a growth rate is specified, 
+                         this defines the carrying capacity in the logistic growth equation. 
+
+GROWTHRATE <num> [0]     POPULATION growth rate
+
+SEED <num>               Seed for the random number generator
+			   		   
+RIGHTMUTRATE <vector>    A vector of RIGHTLOCI right loci mutation rates. Mutation rates should be set for all loci 
+                         at the right side. 
+			 			 
+LEFTMUTRATE  <vector>    A vector of LEFTLOCI left loci mutation rates (see RIGHTMUTRATE)
+
+RIGHTRECRATE <vector>    A vector of RIGHTLOCI right loci recombination rates (see RIGHTMUTRATE)
+			 
+LEFTRECRATE <vector>     A vector of LEFTLOCI left loci recombination rates (see RIGHTMUTRATE)
+
+GAMMA <num> [0]		 The shape parameter (alpha or k) of the gamma distribution. Should be an integer. If bigger
+			 than 0 all mutation rates will be sampled from agamma distribution with parameters alpha=GAMMA
+			 and teta=MUTRATE. A value of 0 means that mutation rates will not be sampled but uses as is
+			 (no uncertanity)
