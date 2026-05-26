@@ -1,3 +1,5 @@
+## *This repository was moved to Codeberg*
+
 # wave3
 
 **wave3** is a small program used in Beleza S, Santos AM, McEvoy B, Alves I, Martinho C, Cameron E, Shriver MD, Parra EJ, Rocha J (2013). The timing of pigmentation lightening in Europeans. *Molecular Biology and Evolution*, **30(1):** 24-35.
